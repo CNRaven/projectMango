@@ -5,7 +5,6 @@ const passportConfig = require('../passport');
 const JWT = require('jsonwebtoken');
 const User = require('../models/User');
 const Todo = require('../models/Todo');
-const Profile = require('../models/Profile');
 
 
 const signToken = userID =>{
@@ -80,11 +79,12 @@ userRouter.get('/profile',passport.authenticate('jwt',{session : false}),(req,re
         if(err)
             res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
         else{
-            console.log(document);
+            // console.log(document);
             res.status(200).json({
                 user_profile: {
                     _id: document._id,
-                    name: document.name, 
+                    name: document.name,
+                    age: document.age, 
                     location: document.location, 
                     interests: document.interests, 
                     about: document.about, 
@@ -97,22 +97,46 @@ userRouter.get('/profile',passport.authenticate('jwt',{session : false}),(req,re
     });
 });
 
-// userRouter.post('/profile',passport.authenticate('jwt',{session : false}),(req,res)=>{
-//     const profile = new Profile(req.body);
-//     profile.save(err=>{
-//         if(err)
-//             res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
-//         else{
-//             req.user.profile.push(profile);
-//             req.user.save(err=>{
-//                 if(err)
-//                     res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
-//                 else
-//                     res.status(200).json({message : {msgBody : "Successfully created todo", msgError : false}});
-//             });
-//         }
-//     })
-// });
+userRouter.post('/profile',passport.authenticate('jwt',{session : false}), async (req,res)=>{
+
+
+    /*
+    try {
+        let { name, location, interests, about, goals, age } = req.body;
+
+        if (!name || !location || !interets || !about || !goals || !age) {
+            return res
+                    .status(400)
+                    .json({ msg: "Not all fields have been entered." });
+        }
+
+        const updateName = await User.findOneAndUpdate();
+
+    } catch(err) {
+        res.status(500).json({ error: err.message });
+    }
+    */
+
+
+    console.log(req.body._id);
+    console.log(req.body.name);
+    console.log(req.body.newName);
+
+    // const profile = new Profile(req.body);
+    // profile.save(err=>{
+    //     if(err)
+    //         res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+    //     else{
+    //         req.user.profile.push(profile);
+    //         req.user.save(err=>{
+    //             if(err)
+    //                 res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+    //             else
+    //                 res.status(200).json({message : {msgBody : "Successfully created todo", msgError : false}});
+    //         });
+    //     }
+    // })
+});
 // - /profile in ref to url
 userRouter.get('/profile',passport.authenticate('jwt',{session : false}),(req,res)=>{
     User.findById({_id : req.user._id}).populate('profile').exec((err,document)=>{

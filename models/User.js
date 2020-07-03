@@ -49,9 +49,7 @@ const UserSchema = new mongoose.Schema({
         required : true
     },
 
-    todos : [{type : mongoose.Schema.Types.ObjectId, ref: 'Todo'}],
-
-    profile : [{type : mongoose.Schema.Types.ObjectId, ref: 'Profile'}]
+    todos : [{type : mongoose.Schema.Types.ObjectId, ref: 'Todo'}]
 });
 
 UserSchema.pre('save',function(next){
