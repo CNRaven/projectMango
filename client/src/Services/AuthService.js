@@ -26,6 +26,17 @@ export default {
         }).then(res => res.json())
           .then(data => data);
     },
+    update : user =>{
+        console.log(user);
+        return fetch('/user/update',{
+            method : "post",
+            body : JSON.stringify(user),
+            headers : {
+                'Content-Type' : 'application/json'
+            }
+        }).then(res => res.json())
+          .then(data => data);
+    },
     logout : ()=>{
         return fetch('/user/logout')
                 .then(res => res.json())
