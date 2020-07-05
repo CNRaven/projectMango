@@ -24,5 +24,17 @@ export default {
             else
                 return {message : {msgBody : "UnAuthorized"},msgError : true};
         });
-    }
+    },
+
+    update : profile =>{
+        console.log(profile);
+        return fetch('/user/profile',{
+            method : "put",
+            body : JSON.stringify(profile),
+            headers : {
+                'Content-Type' : 'application/json'
+            }
+        }).then(res => res.json())
+          .then(data => data);
+    },
 }
