@@ -5,6 +5,7 @@ const passportConfig = require('../passport');
 const JWT = require('jsonwebtoken');
 const User = require('../models/User');
 const Todo = require('../models/Todo');
+const Workout = require('../models/Workout');
 
 
 const signToken = userID =>{
@@ -47,18 +48,18 @@ userRouter.get('/logout',passport.authenticate('jwt',{session : false}),(req,res
     res.json({user:{username : "", role : ""},success : true});
 });
 
-userRouter.post('/todo',passport.authenticate('jwt',{session : false}),(req,res)=>{
-    const todo = new Todo(req.body);
-    todo.save(err=>{
+userRouter.post('/workout',passport.authenticate('jwt',{session : false}),(req,res)=>{
+    const workout = new Workout(req.body);
+    workout.save(err=>{
         if(err)
             res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
         else{
-            req.user.todos.push(todo);
+            // req.user.todos.push(todo);
             req.user.save(err=>{
                 if(err)
                     res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
                 else
-                    res.status(200).json({message : {msgBody : "Successfully created todo", msgError : false}});
+                    res.status(200).json({message : {msgBody : "Successfully created workout", msgError : false}});
             });
         }
     })
@@ -115,6 +116,7 @@ userRouter.put('/profile',passport.authenticate('jwt',{session : false}), async 
             });
         }
     });
+});
     /*
     try {
         let { name, location, interests, about, goals, age } = req.body;
@@ -133,11 +135,38 @@ userRouter.put('/profile',passport.authenticate('jwt',{session : false}), async 
     */
 
 
-  
-});
+
 // - /profile in ref to url
-userRouter.get('/profile',passport.authenticate('jwt',{session : false}),(req,res)=>{
-    User.findById({_id : req.user._id}).populate('profile').exec((err,document)=>{
+// userRouter.get('/profile',passport.authenticate('jwt',{session : false}),(req,res)=>{
+//     User.findById({_id : req.user._id}).populate('profile').exec((err,document)=>{
+//         if(err)
+//             res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+//         else{
+//             res.status(200).json({profile : document.profile, authenticated : true});
+//         }
+//     });
+// });
+
+
+///WORKOUT
+
+userRouter.get('/workout',passport.authenticate('jwt',{session : false}),(req,res)=>{
+    User.findById({_id : req.user._id}).populate('workout').exec((err,document)=>{
+        console.log(req.body);
+        if(err)
+            res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+        else{
+            // console.log(document);
+            res.status(200).json({workout: document.workout, 
+                authenticated: true
+            });
+            //passed document to the frontend - location: document.location
+        }
+    });
+});
+
+userRouter.get('/workout',passport.authenticate('jwt',{session : false}),(req,res)=>{
+    User.findById({_id : req.user._id}).populate('workout').exec((err,document)=>{
         if(err)
             res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
         else{
@@ -145,6 +174,7 @@ userRouter.get('/profile',passport.authenticate('jwt',{session : false}),(req,re
         }
     });
 });
+
 
 userRouter.get('/admin',passport.authenticate('jwt',{session : false}),(req,res)=>{
     if(req.user.role === 'admin'){
@@ -159,6 +189,12 @@ userRouter.get('/authenticated',passport.authenticate('jwt',{session : false}),(
     const {username,role} = req.user;
     res.status(200).json({isAuthenticated : true, user : {username,role}});
 });
+
+
+
+
+
+
 
 
 
