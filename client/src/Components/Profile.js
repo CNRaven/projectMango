@@ -3,6 +3,7 @@ import AuthService from '../Services/AuthService';
 import ProfileService from '../Services/ProfileService';
 // import Message from './Message';
 import { AuthContext } from '../Context/AuthContext';
+import './profile.css';
 
 const Profile = () =>{
     //display profile from get request
@@ -96,85 +97,75 @@ const Profile = () =>{
         return <div>No data</div>;
     }
     return(
-        <div>
-            <form onSubmit={onSubmit}>
-                <label htmlFor="profile-name">Enter your name: </label><br />
-                <input 
-                    name="name"
-                    id="profile-name"
-                    type="text"
-                    value={profile.name}
-                    onChange={onChange}
-                />
-                 <br />
-                <label htmlFor="profile-ageUser">Your age:</label> <br />
-                <input 
-                     name="age"
-                     id="profile-ageUser"
-                     type="text"
-                     value={profile.age}
-                     onChange={onChange}
-                />
-                <br />
-                <label htmlFor="profile-locationUser">Location:</label> <br />
-                <input
-                    name="location"
-                    id="profile-locationUser"
-                    type="text"
-                    value={profile.location}
-                    onChange={onChange} 
-                />
-                <br />
-                <label htmlFor="profile-interestsUser">Your interests:</label> <br />
-                <input 
-                    name="interests"
-                    id="profile-interestsUser"
-                    type="text"
-                    value={profile.interests}
-                    onChange={onChange} 
-                />
-                <br />
-                <label htmlFor="profile-aboutUser">About:</label> <br />
-                <input     
-                    name="about"
-                    id="profile-aboutUser"
-                    type="text"
-                    value={profile.about}
-                    onChange={onChange}  
-                />
-                <br />
-                <label htmlFor="profile-goalsUser">Your Goals:</label> <br />
-                <input
-                    name="goals"
-                    id="profile-goalsUser"
-                    type="text"
-                    value={profile.goals}
-                    onChange={onChange}  
-                />
-                <br /> 
-                <button type="submit">Update</button> 
-            </form>
-         
+        <div className="profile-container">
+            <div className="column">
+                <form onSubmit={onSubmit}>
+                    <label htmlFor="profile-name">Enter your name: </label><br />
+                    <input 
+                        name="name"
+                        id="profile-name"
+                        type="text"
+                        value={profile.name}
+                        onChange={onChange}
+                    />
+                    <br />
+                    <label htmlFor="profile-ageUser">Your age:</label> <br />
+                    <input 
+                        name="age"
+                        id="profile-ageUser"
+                        type="text"
+                        value={profile.age}
+                        onChange={onChange}
+                    />
+                    <br />
+                    <label htmlFor="profile-locationUser">Location:</label> <br />
+                    <input
+                        name="location"
+                        id="profile-locationUser"
+                        type="text"
+                        value={profile.location}
+                        onChange={onChange} 
+                    />
+                    <br />
+                    <label htmlFor="profile-interestsUser">Your interests:</label> <br />
+                    <input 
+                        name="interests"
+                        id="profile-interestsUser"
+                        type="text"
+                        value={profile.interests}
+                        onChange={onChange} 
+                    />
+                    <br />
+                    <label htmlFor="profile-aboutUser">About:</label> <br />
+                    <input     
+                        name="about"
+                        id="profile-aboutUser"
+                        type="text"
+                        value={profile.about}
+                        onChange={onChange}  
+                    />
+                    <br />
+                    <label htmlFor="profile-goalsUser">Your Goals:</label> <br />
+                    <input
+                        name="goals"
+                        id="profile-goalsUser"
+                        type="text"
+                        value={profile.goals}
+                        onChange={onChange}  
+                    />
+                    <br /> 
+                    <button type="submit">Update</button> 
+                </form>
+            </div>
+            <div className="column">
+                second column
+            </div>
+            <div className="column">
+                third column - workout list
+            </div>
         </div>
     );
 
 }
 
 export default Profile;
-
-
-
-// import React from 'react';
-
-// const Profile = (props) =>{
-//     return (
-//         <div>
-//             {console.log(props)}
-//             {/* <li>{props.todo.name}</li> */}
-
-//             <li>check</li>
-//         </div>
-//         )
-// }
-
-// export default Profile;

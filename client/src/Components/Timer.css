@@ -1,0 +1,19 @@
+.timer-container {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid black;
+    padding: 20px;
+}
+
+.column-left {
+    width: 70%;
+    border: 2px solid black;
+
+}
+
+.column-right {
+    width: 30%;
+    border: 2px solid black;
+
+
+}
