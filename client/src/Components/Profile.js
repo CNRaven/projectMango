@@ -42,13 +42,13 @@ const Profile = () =>{
 
     const onSubmit = e =>{
         e.preventDefault();
-        AuthService.update(user).then(data=>{
+        ProfileService.update(profile).then(data=>{
             // const { message } = data;
             // setMessage(message);
             // resetForm();
             // if(!message.msgError){
             //     timerID = setTimeout(()=>{
-                    props.history.push('/login');
+                    // props.history.push('/login');
             //     },2000)
             // }
         });

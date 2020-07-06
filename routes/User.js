@@ -97,9 +97,24 @@ userRouter.get('/profile',passport.authenticate('jwt',{session : false}),(req,re
     });
 });
 
-userRouter.post('/profile',passport.authenticate('jwt',{session : false}), async (req,res)=>{
+userRouter.put('/profile',passport.authenticate('jwt',{session : false}), async (req,res)=>{
+    const { name,age,location, interests,about, goals } = req.body;
+    const newUser = new User({ name, age, location, interests, about, goals });
+    console.log(req.body)
+    User.findByIdAndUpdate({_id : req.user._id},{name, age, location, interests, goals},(err,newUser)=>{
+        if(err)
+            res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+        else{
+            newUser.save(err=>{
+                if(err)
+                    res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+                else
+                    res.status(201).json({message : {msgBody : "Account successfully updated!", msgError: false}});
+                    console.log(newUser)
 
-
+            });
+        }
+    });
     /*
     try {
         let { name, location, interests, about, goals, age } = req.body;
@@ -118,24 +133,7 @@ userRouter.post('/profile',passport.authenticate('jwt',{session : false}), async
     */
 
 
-    console.log(req.body._id);
-    console.log(req.body.name);
-    console.log(req.body.newName);
-
-    // const profile = new Profile(req.body);
-    // profile.save(err=>{
-    //     if(err)
-    //         res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
-    //     else{
-    //         req.user.profile.push(profile);
-    //         req.user.save(err=>{
-    //             if(err)
-    //                 res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
-    //             else
-    //                 res.status(200).json({message : {msgBody : "Successfully created todo", msgError : false}});
-    //         });
-    //     }
-    // })
+  
 });
 // - /profile in ref to url
 userRouter.get('/profile',passport.authenticate('jwt',{session : false}),(req,res)=>{
