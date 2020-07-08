@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+}
+
+.container-signin {
+    display:flex;
+    
+
+}
+
+.signcolumn {
+    width:50vw;
+    height:100vh;
+    
+}
+
+.sleft {
+    background-color: #f2f2f2;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+}
+
+.sright {
+    background-image: url("/bgright.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display:flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.logo {
+    max-height: 150px;
+    margin-bottom:25px;
+    animation: fadeInLeft;
+    animation-duration: 1s;
+
+}
+
+
+.description {
+    display:flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    width:70%;
+    color:white;
+}
+
+.description h1{
+    font-size: 36pt;
+    margin:5px 0px;
+}
+.description h1{
+    font-size: 36pt;
+    margin:10px 0px;
+}

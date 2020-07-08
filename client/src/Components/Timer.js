@@ -44,8 +44,6 @@ const Timer = () => {
     useEffect(()=>{
         WorkoutService.getWorkout().then(data =>{
             setWorkouts(data.workout);
-            console.log('data.workout', data.workout)
-        });
     },[]);
 
     useEffect(() => {
@@ -129,10 +127,12 @@ const Timer = () => {
                 </div>
                 <div className='column-right'>
                     <select onChange={workoutSelectHandler} name="workout-selection" id="workout-selection">
-                                 {workouts.map(()=> {
+
+                                    {workouts.map(()=> {
                                         num = num+1;
                                          return <option value={num}>{workouts[num].name}</option>
                                     } )}
+                        
                         </select>
                         {
                         // console.log(workouts[0])
