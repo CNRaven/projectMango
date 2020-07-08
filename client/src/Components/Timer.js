@@ -46,8 +46,6 @@ const Timer = () => {
     useEffect(()=>{
         WorkoutService.getWorkout().then(data =>{
             setWorkouts(data.workout);
-            console.log('data.workout', data.workout)
-        });
     },[]);
 
     useEffect(() => {
@@ -138,7 +136,6 @@ const Timer = () => {
                                 return <option value={0}>{workouts[0].name}</option>
                                 return <option value={1}>{workouts[1].name}</option>
                                 return <option value={2}>{workouts[2].name}</option>
-
                         </select>
                         {
                         // console.log(workouts[0])
