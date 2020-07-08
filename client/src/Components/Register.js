@@ -1,6 +1,7 @@
 import React, {useState,useRef,useEffect} from 'react';
 import AuthService from '../Services/AuthService';
 import Message from '../Components/Message';
+import './Register.css';
 
 const Register = props=>{
     const [user,setUser] = useState({username: "", password : "", role : ""});
@@ -39,8 +40,8 @@ const Register = props=>{
 
     return(
         <div>
-            <form onSubmit={onSubmit}>
-                <h3>Please Register</h3>
+            <form className='register' onSubmit={onSubmit}>
+                <h1>SIGN UP</h1>
                 <label htmlFor="username" className="sr-only">Username: </label>
                 <input type="text" 
                        name="username" 
@@ -64,8 +65,10 @@ const Register = props=>{
                        placeholder="Enter role (admin/user)"/>
                 <button className="btn btn-lg btn-primary btn-block" 
                         type="submit">Register</button>
+                        <div className='error'>{message ? <Message message={message}/> : null}</div>
+                        
             </form>
-            {message ? <Message message={message}/> : null}
+            
         </div>
     )
 }

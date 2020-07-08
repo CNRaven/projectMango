@@ -14,7 +14,7 @@ const Timer = () => {
             setWorkouts(data.workout);
             // console.log(data);
             // console.log('data.user_profile', data.user_profile);
-        }).then(mapWorkouts);
+        }).then();
     },[]);
 
     
@@ -52,11 +52,7 @@ const Timer = () => {
                     </div>
                 </div>
                 <div className='column-right'>
-                        {
-                        
-                        console.log(workouts[0])
-                        
-                        }
+ 
                 </div>
             </div>
         </div>

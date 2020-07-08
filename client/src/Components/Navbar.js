@@ -21,17 +21,17 @@ const Navbar = props =>{
             <>
                 <Link to="/">
                     <li className="nav-item nav-link">
-                        Home
+                        HOME
                     </li>
                 </Link>  
                 <Link to="/login">
                     <li className="nav-item nav-link">
-                        Login
+                        LOGIN
                     </li>
                 </Link>  
                 <Link to="/register">
                     <li className="nav-item nav-link">
-                        Register
+                        REGISTER
                     </li>
                 </Link>
             </>
@@ -43,47 +43,47 @@ const Navbar = props =>{
             <>
                 <Link to="/">
                     <li className="nav-item nav-link">
-                        Home
+                        HOME
                     </li>
                 </Link> 
                 <Link to="/todos">
                     <li className="nav-item nav-link">
-                        Todos
+                        TODOS
                     </li>
                 </Link> 
                 <Link to="/profile">
                     <li className="nav-item nav-link">
-                        Profile
+                        PROFILE
                     </li>
                 </Link>                
                 <Link to="/timer">
                     <li className="nav-item nav-link">
-                        Timer
+                        TIMER
                     </li>
                 </Link>
                 {
                     user.role === "admin" ? 
                     <Link to="/admin">
                         <li className="nav-item nav-link">
-                            Admin
+                            ADMIN
                         </li>
                     </Link> : null
                 }  
-                <button type="button" 
-                        className="btn btn-link nav-item nav-link" 
-                        onClick={onClickLogoutHandler}>Logout</button>
+                <button type="button" className="logout-btn" onClick={onClickLogoutHandler}>
+                    LOGOUT
+                </button>
             </>
         )
     }
     return(
         <div className='navbar-container'>
-            <Link to="/">
-                <div className="logo">Fitness App</div>
-            </Link>
-            <div>
-                <ul>
-                    { !isAuthenticated ? unauthenticatedNavBar() : authenticatedNavBar()}
-                </ul>
+            <div className='navbar-wrapper'>
+            <img src='logo2.svg' className='logo_navbar'></img>
+                <div>
+                    <ul>
+                        { !isAuthenticated ? unauthenticatedNavBar() : authenticatedNavBar()}
+                    </ul>
+                </div>
             </div>
         </div>
     )
