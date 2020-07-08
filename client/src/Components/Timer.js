@@ -7,11 +7,11 @@ const Timer = () => {
     let [startTimer, setStartTimer] = useState(false);
     let combined = [];
     let exerciseTime = null;
-    let num = 0;
+    let num = -1;
 
     const [workouts,setWorkouts] = useState(null);
     const [counter, setCounter] = useState(5);
-    const [workoutSelected, setWorkoutSelected] = useState(1);
+    const [workoutSelected, setWorkoutSelected] = useState(0);
 
     const [timerMinutes, setTimerMinutes] = useState('00');
     const [timerSeconds, setTimerSeconds] = useState('00');
@@ -25,10 +25,8 @@ const Timer = () => {
         combined = [...workouts[0].round1,"BREAK", ...workouts[0].round2, "BREAK", ...workouts[0].round3, "BREAK", ...workouts[0].round4, "BREAK", ...workouts[0].round5];
     }
 
-
     const calcTime = (counter) => {
         const minutes = Math.floor(counter / 60);
-        // const minutes = Math.floor((counter % (1000 * 60 * 60)) / (1000*60));
         const seconds = Math.floor(counter % 60);
         const thirty = Math.floor(counter % workoutTime);
 
@@ -71,7 +69,6 @@ const Timer = () => {
         } else if (e.target.value == 2700) {
             setWorkoutTime(90);
             console.log(90);
-
         } else {
             console.log("something went wrong")
         }
@@ -96,6 +93,7 @@ const Timer = () => {
             <div className='timer-container'>
                 <div className='column-left'>
                     <h1>{workouts[workoutSelected].name}</h1>
+                    <h4>{workouts[workoutSelected].description}</h4>
 
                     <div>
                         <div>
@@ -131,20 +129,15 @@ const Timer = () => {
                 </div>
                 <div className='column-right'>
                     <select onChange={workoutSelectHandler} name="workout-selection" id="workout-selection">
-                                 {/* {workouts.map(()=> {
-                                         return <option value={0}>{workouts[0].name}</option>
-                                    } )} */}
-
-                                return <option value={0}>{workouts[0].name}</option>
-                                return <option value={1}>{workouts[1].name}</option>
-                                return <option value={2}>{workouts[2].name}</option>
-
+                                 {workouts.map(()=> {
+                                        num = num+1;
+                                         return <option value={num}>{workouts[num].name}</option>
+                                    } )}
                         </select>
                         {
                         // console.log(workouts[0])
                         }
                         <h2>{workouts[workoutSelected].name}</h2>
-                        {/* <h4>{workouts[0].description}</h4> */}
                         <h2>Round 1</h2>
                         {workouts[workoutSelected].round1.map((item)=> {
                             return item + " | ";
