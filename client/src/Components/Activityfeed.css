@@ -1,0 +1,43 @@
+
+.post {
+background-color: #41ead4;
+padding: 20px;
+margin: 10px 25px 100px 25px ;
+border-radius: 20px;
+text-align: center;
+-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.10);
+-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.10);
+box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.10);
+
+}
+.post h3{
+    color:white;
+}
+
+
+
+.postboard input {
+    padding:20px;
+    margin: 0px 20px 0 0;
+    border-radius: 50px;
+    border: 2px solid #f2f2f2;
+    font-family: 'Montserrat', sans-serif;
+    width:70%;
+    
+    
+  }
+
+.postboard button {
+    padding:20px;
+    margin: 20px 0;
+    border-radius: 50px;
+    border: 1px solid grey;
+    color: white;
+    background-color: #ff206e;
+    border:none;
+    font-family: 'Montserrat', sans-serif;
+    min-width: 200px;
+    font-weight: 600;
+    width:20%;
+
+}

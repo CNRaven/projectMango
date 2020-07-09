@@ -61,4 +61,20 @@
     font-size: 14pt;
 }
 
+.quote {
+    margin: 20px 0;
+    max-width: 460px;
+    padding: 10px;
+    line-height: 20pt;
+    border-radius: 20px;
+    text-align: center;
 
+    animation: fadeIn;
+    animation-duration: 0.5s;
+}
+
+.quote h3 {
+    line-height:300%;
+    font-style: italic;
+    font-weight: 300;
+}

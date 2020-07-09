@@ -3,7 +3,7 @@ import AuthService from '../Services/AuthService';
 import ActivityFeedService from '../Services/ActivityFeedService';
 // import Message from './Message';
 // import { AuthContext } from '../Context/AuthContext';
-// import './profile.css';
+import './Activityfeed.css';
 
 const Activityfeed = () => {
 
@@ -41,24 +41,23 @@ const Activityfeed = () => {
     }
 
     return(
-        <div>
-            <div className="cl left">
-                <div className="box">
-                    <h2>Post a status</h2>
-                    <form className='profileUp' onSubmit={onSubmit}>
-                        <label htmlFor="activityfeed-item">what's on your mind? </label><br />
+        <React.Fragment>
+                    <div className='post'>
+                    <h3>Post a status</h3>
+                    <form className='postboard' onSubmit={onSubmit}>
                         <input 
                             name="text"
                             id="activityfeed-item"
                             type="text"
                             value={textInput.text}
                             onChange={onChange}
+                            placeholder='what is on your mind?'
                         />
 
                         <button type="submit">Update</button> 
 
                     </form>
-
+                    </div>
                     <hr />
                     <div>
                     {
@@ -66,8 +65,8 @@ const Activityfeed = () => {
                             if(activityFeed) {
                                 return (
                                     <div key={feed._id}>
-                                        {feed.text} <br /> 
-                                        {feed.date}
+                                        <h1>{feed.text}</h1>
+                                        <h3>{feed.date}</h3>
                                         <hr />
                                     </div>
                                 )
@@ -76,9 +75,8 @@ const Activityfeed = () => {
                         } )
                     }
                     </div>
-                </div>
-            </div>
-        </div>
+
+            </React.Fragment>
 )}
 
 export default Activityfeed;

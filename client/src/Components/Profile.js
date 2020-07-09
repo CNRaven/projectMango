@@ -4,6 +4,8 @@ import ProfileService from '../Services/ProfileService';
 // import Message from './Message';
 import { AuthContext } from '../Context/AuthContext';
 import './profile.css';
+import Activityfeed from './Activityfeed'
+import DisplayWorkouts from './DisplayWorkouts'
 
 const Profile = () =>{
     //display profile from get request
@@ -163,11 +165,13 @@ const Profile = () =>{
             <div className="cl middle">
             <div className="box">
                 <h2>Your activity</h2>
+                <Activityfeed />
             </div>
             </div>
             <div className="cl right">
             <div className="box">
             <h2>Workouts</h2>
+            <DisplayWorkouts />
             </div>
             </div>
         </React.Fragment>
