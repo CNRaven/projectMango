@@ -6,6 +6,7 @@ const JWT = require('jsonwebtoken');
 const User = require('../models/User');
 const Todo = require('../models/Todo');
 const Workout = require('../models/Workout');
+const Activityfeed = require('../models/Activityfeed');
 
 
 const signToken = userID =>{
@@ -81,7 +82,7 @@ userRouter.post('/workout',passport.authenticate('jwt',{session : false}),async(
     console.log(req.body);
     const {name, description, round1ex1, round1ex2, round1ex3, round1ex4, round2ex1, round2ex2, round2ex3, round2ex4, round3ex1, round3ex2, round3ex3, round3ex4, round4ex1, round4ex2, round4ex3, round4ex4, round5ex1, round5ex2, round5ex3, round5ex4} = req.body;
 
-    const round1 = [round1ex1, round1ex2, round2ex3, round1ex4];
+    const round1 = [round1ex1, round1ex2, round1ex3, round1ex4];
     const round2 = [round2ex1, round2ex2, round2ex3, round2ex4];
     const round3 = [round3ex1, round3ex2, round3ex3, round3ex4];
     const round4 = [round4ex1, round4ex2, round4ex3, round4ex4];
@@ -91,9 +92,6 @@ userRouter.post('/workout',passport.authenticate('jwt',{session : false}),async(
         name, description, round1, round2, round3, round4, round5
     });
 
-        // const saveWorkout = await workout.save();
-        // user.push(saveWorkout)
-    
     workout.save(err=>{
         if(err)
             res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
@@ -190,6 +188,49 @@ userRouter.put('/profile',passport.authenticate('jwt',{session : false}), async 
 //         }
 //     });
 // });
+
+//Activity Feed
+
+userRouter.get('/activityfeed',passport.authenticate('jwt',{session : false}),(req,res)=>{
+    User.findById({_id : req.user._id}).populate('activityfeed').exec((err,document)=>{
+        console.log(req.body);
+        console.log(document);
+        if(err)
+            res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+        else{
+            // console.log(document);
+            res.status(200).json({activityfeed: document.activityfeed, 
+                authenticated: true
+            });
+            //passed document to the frontend - location: document.location
+        }
+    });
+});
+
+
+userRouter.post('/activityfeed',passport.authenticate('jwt',{session : false}),(req,res)=>{
+    // console.log(req.body);
+    const {text} = req.body;
+    const activityfeed = new Activityfeed({text});
+    console.log(activityfeed);
+
+    activityfeed.save(err=>{
+        if(err)
+            res.status(500).json({message : {msgBody : "Error has occured1", msgError: true}});
+        else{
+            req.user.activityfeed.push(activityfeed);
+            req.user.save(err=>{
+                if(err)
+                    res.status(500).json({message : {msgBody : "Error has occured2", msgError: true}});
+                else
+                    res.status(200).json({message : {msgBody : "feed created", msgError : false}});
+            });
+        }
+    })
+});
+
+
+
 
 
 ///WORKOUT

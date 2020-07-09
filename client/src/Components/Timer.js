@@ -44,6 +44,7 @@ const Timer = () => {
     useEffect(()=>{
         WorkoutService.getWorkout().then(data =>{
             setWorkouts(data.workout);
+        });
     },[]);
 
     useEffect(() => {

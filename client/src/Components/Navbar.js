@@ -63,9 +63,20 @@ const Navbar = props =>{
                 </Link>
                 <Link to="/workoutnew">
                     <li className="nav-item nav-link">
-                        Workout new
+                        Workout New
+                    </li>
+                </Link>          
+                <Link to="/workoutedit">
+                    <li className="nav-item nav-link">
+                        Workout Edit
                     </li>
                 </Link>
+                <Link to="/activityfeed">
+                    <li className="nav-item nav-link">
+                        activityfeed
+                    </li>
+                </Link>  
+            
                 {
                     user.role === "admin" ? 
                     <Link to="/admin">

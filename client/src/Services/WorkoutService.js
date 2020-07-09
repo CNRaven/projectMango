@@ -26,7 +26,7 @@ export default {
         });
     },
 
-    update : workout =>{
+    updateWorkout : workout =>{
         console.log(workout);
         return fetch('/user/workout',{
             method : "put",
