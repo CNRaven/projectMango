@@ -148,6 +148,41 @@ userRouter.put('/profile',passport.authenticate('jwt',{session : false}), async 
 // });
 
 
+// ANDY ADMIN SECTION
+
+// GET method - can be used in insomnia - http://localhost:5000/user/getallusers
+userRouter.get('/getallusers',(req,res)=>{
+    
+    User.find({}).exec((err,document)=>{
+        console.log(document)
+        if(err)
+            res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+            else{
+            res.status(200).json({document, authenticated : true});
+            }
+    })
+
+});
+
+// Method to delete a user
+userRouter.post('/getallusers', async (req,res)=>{
+    // let { user } = req.body;
+
+    User.findByIdAndDelete({}).exec((err,document)=>{
+        console.log(document)
+        if(err)
+            res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+            else{
+            res.status(200).json({document, authenticated : true});
+            }
+    })
+
+});
+
+
+// END OF ADMIN
+
+
 ///WORKOUT
 
 userRouter.get('/workout',passport.authenticate('jwt',{session : false}),(req,res)=>{

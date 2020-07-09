@@ -14,7 +14,8 @@ const Timer = () => {
             setWorkouts(data.workout);
             // console.log(data);
             // console.log('data.user_profile', data.user_profile);
-        }).then(mapWorkouts);
+        // }).then(mapWorkouts);
+        });
     },[]);
 
     
