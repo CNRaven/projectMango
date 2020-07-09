@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import WorkoutService from '../Services/WorkoutService';
 
 const Workoutnew = () => {
@@ -63,42 +63,30 @@ const Workoutnew = () => {
         console.log(workout);
     }
 
+    useEffect(()=>{
+        WorkoutService.getWorkout().then(data =>{
+            console.log('get workout', data.workout);
+            setWorkout(data.workout[0]);
+            // console.log('data.user_profile', data.user_profile);
+        });
+    },[]);
+
     const onSubmit = e =>{
         e.preventDefault();
-        WorkoutService.postWorkout(workout).then(data=>{ 
+        WorkoutService.updateWorkout(workout).then(data=>{ 
             console.log(workout);
-            resetForm();
+            // setWorkout(data);            
         });
     }
-    const resetForm = ()=>{
-        setWorkout({
-            name: "", 
-            description: "", 
-            round1ex1: "", 
-            round1ex2: "", 
-            round1ex3: "", 
-            round1ex4: "",
-            round2ex1: "",
-            round2ex2: "",
-            round2ex3: "",
-            round2ex4: "",
-            round3ex1: "",
-            round3ex2: "",
-            round3ex3: "",
-            round3ex4: "",
-            round4ex1: "",
-            round4ex2: "",
-            round4ex3: "",
-            round4ex4: "",
-            round5ex1: "",
-            round5ex2: "",
-            round5ex3: "",
-            round5ex4: "",
-        });
-    }
-
+    
     return(
     <div>
+
+        {workout.name}<br />
+        {workout.description} <br />
+        {workout.round1}
+        {console.log(workout.round1)}
+
         <h1>Workout New</h1>
         <form onSubmit={onSubmit}>
                     <label htmlFor="workout-name">Workout Name: </label>

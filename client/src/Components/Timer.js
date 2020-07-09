@@ -44,9 +44,6 @@ const Timer = () => {
     useEffect(()=>{
         WorkoutService.getWorkout().then(data =>{
             setWorkouts(data.workout);
-            // console.log("data", data);
-            // console.log('data.user_profile', data.user_profile);
-        }).then();
         });
     },[]);
 
