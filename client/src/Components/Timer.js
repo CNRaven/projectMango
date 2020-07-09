@@ -137,6 +137,7 @@ const Timer = () => {
 
                         
                     </div>
+
                         
                 </div>   
             </div>
@@ -146,12 +147,10 @@ const Timer = () => {
             
              <h1>Workouts</h1>
                     <select onChange={workoutSelectHandler} name="workout-selection" id="workout-selection">
-
                                     {workouts.map(()=> {
                                         num = num+1;
                                          return <option value={num}>{workouts[num].name}</option>
                                     } )}
-                        
                         </select>
                         {
                         // console.log(workouts[0])

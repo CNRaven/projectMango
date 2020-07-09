@@ -50,6 +50,7 @@ const UserSchema = new mongoose.Schema({
     },
 
     todos : [{type : mongoose.Schema.Types.ObjectId, ref: 'Todo'}],
+    activityfeed : [{type : mongoose.Schema.Types.ObjectId, ref: 'Activityfeed'}],
     workout : [{type : mongoose.Schema.Types.ObjectId, default: ()=> ({}), ref: 'Workout'}]
 });
 
