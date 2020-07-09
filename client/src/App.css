@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap');
 
+
+
 *:focus {
     outline: none;
 }
@@ -35,6 +37,7 @@ body {
 .middle {grid-column: 2/3;}
 .middle-right {grid-column: 2/4;}
 .right  {grid-column: 3/4;}
+.full  {grid-column: 1/4;}
 
 
 

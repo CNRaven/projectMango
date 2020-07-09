@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import WorkoutService from '../Services/WorkoutService';
+import './Workoutnew.css';
 
 const Workoutnew = () => {
     const [workout,setWorkout] = useState({
@@ -71,9 +72,13 @@ const Workoutnew = () => {
     }
 
     return(
-    <div>
+    <React.Fragment>
+    <div className='left'><img src='workout1.svg' className='workoutImg'></img></div>
+    <div className='middle'>
+    <div className='box'>
         <h1>Workout New</h1>
-        <form onSubmit={onSubmit}>
+        <form className='workoutForm' onSubmit={onSubmit}>
+        <div className='WorkoutInfo'>
                     <label htmlFor="workout-name">Workout Name: </label>
                     <input 
                         name="name"
@@ -89,10 +94,9 @@ const Workoutnew = () => {
                         type="text"
                         value={workout.description}
                         onChange={onChange}
-                    />
-                    <br />
-                    
-                    <br />
+                    /></div>
+                    <div className='rounds'>
+                    <div className='round'>
                     <h2>Round 1</h2>
                     <label htmlFor="workout-round1-ex1">Exercise 1</label> 
                     <input 
@@ -125,10 +129,10 @@ const Workoutnew = () => {
                         type="text"
                         value={workout.round1ex4}
                         onChange={onChange} 
-                    />
+                    /></div>
 
 
-
+                    <div className='round'>
                     <h2>Round 2</h2>
                     <label htmlFor="workout-round2-ex1">Exercise 1</label> 
                     <input 
@@ -161,8 +165,8 @@ const Workoutnew = () => {
                         type="text"
                         value={workout.round2ex4}
                         onChange={onChange} 
-                    />
-
+                    /></div>
+                    <div className='round'>
                     <h2>Round 3</h2>
                     <label htmlFor="workout-round3-ex1">Exercise 1</label> 
                     <input 
@@ -195,10 +199,10 @@ const Workoutnew = () => {
                         type="text"
                         value={workout.round3ex4}
                         onChange={onChange} 
-                    />
+                    /></div>
 
 
-
+                    <div className='round'>
                     <h2>Round 4</h2>
                     <label htmlFor="workout-round4-ex1">Exercise 1</label> 
                     <input 
@@ -231,9 +235,9 @@ const Workoutnew = () => {
                         type="text"
                         value={workout.round4ex4}
                         onChange={onChange} 
-                    />
+                    /></div>
 
-
+                    <div className='round'>
                     <h2>Round 5</h2>
                     <label htmlFor="workout-round5-ex1">Exercise 1</label> 
                     <input 
@@ -266,13 +270,14 @@ const Workoutnew = () => {
                         type="text"
                         value={workout.round5ex4}
                         onChange={onChange} 
-                    />
-                    <br />
-                    <br />
+                    /></div>
+                    </div>
                     <button type="submit">Add New Workout</button> 
                 </form>
-
-    </div>)
+    </div>
+    </div>
+    <div className='right'><img src='workout2.svg' className='workoutImg'></img></div>
+    </React.Fragment>)
 }
 
 export default Workoutnew;

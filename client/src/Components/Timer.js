@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './Timer.css';
+import './timer.svg';
 import WorkoutService from '../Services/WorkoutService';
 
 const Timer = () => {
@@ -84,49 +85,66 @@ const Timer = () => {
 
     return(
         //call combineWorkouts to combine all workouts into a single array
-        <div>
+        <React.Fragment>
         
             {combineWorkouts()}
 
-            <h1>Timer</h1>
-            <div className='timer-container'>
-                <div className='column-left'>
-                    <h1>{workouts[workoutSelected].name}</h1>
-                    <h4>{workouts[workoutSelected].description}</h4>
-
-                    <div>
-                        <div>
-                            <h1>{timerMinutes} Minutes | {timerSeconds} Seconds</h1>
-                            {/* {timerThirty} Time until next exercise */}
-                        </div>
-
-                    </div>
-                    <div>
-                    <div><h1>Current Exercise : {combined[workoutIterator]}{console.log(combined)}</h1></div>
-                        <div><h3>NEXT : {combined[workoutIterator+1]}</h3></div>
-                    </div>
-                    <div>
-                        <div></div>
-                     
-
-                        <div>Length of workout: <br />
-                        <select onChange={timeInputHandler} name="cars" id="cars">
-                            <option value="900">15 Minutes</option>
-                            <option value="1800">30 Minutes</option>
-                            <option value="2700">45 Minutes</option>
-                        </select>
-                   
-                            
-                        <button onClick={()=>toggleTimer()}> {startTimer == false ? "Start" : "Pause"}</button>
-                        <br />
-                        {counter === 0 ? "complete" : "Keep going"}
-                        <p>15 mins = 30 seconds per exercise / 30 second break per round</p>
-                        <p>30 mins = 60 seconds per exercise / 60 second break per round</p>
-                        <p>45 mins = 90 seconds per exercise / 90 second break per round</p>
-                        </div>
-                    </div>
+            <div className='left'>
+                <div className='box'>
+                    <h1>Intervals</h1>
+                    <p>15 mins = 30 seconds per exercise</p>
+                    <img src='arrow.svg' className='arrow' ></img>
+                    <p> 30 second break per round</p>
+                    <p>30 mins = 60 seconds per exercise</p>
+                    <img src='arrow.svg' className='arrow' ></img>
+                    <p> 60 second break per round</p>
+                    <p>45 mins = 90 seconds per exercise</p>
+                    <img src='arrow.svg' className='arrow' ></img>
+                    <p> 90 second break per round</p>
                 </div>
-                <div className='column-right'>
+            </div>
+
+            <div className='middle'>
+            <div className='box'>
+                <h1>Timer</h1>
+                
+                <div className='timer'>
+                    <div className='configTimer'>
+                    <h1>{workouts[workoutSelected].name}</h1>
+                    {/* <h4>{workouts[workoutSelected].description}</h4> */}
+                    <div className='selectTimer'>
+                            <h2>Length of workout:</h2>
+                            <select onChange={timeInputHandler} name="cars" id="cars">
+                                <option value="900">15 Minutes</option>
+                                <option value="1800">30 Minutes</option>
+                                <option value="2700">45 Minutes</option>
+                            </select>    
+                            <button onClick={()=>toggleTimer()}> {startTimer == false ? "Start" : "Pause"}</button>
+                            <br />
+                            {counter === 0 ? "complete" : "Keep going"}
+                        </div>
+                        </div>
+                    <div className='clock'>
+                    <h1>{timerMinutes} Min {timerSeconds} Sec</h1>
+                        {/* {timerThirty} Time until next exercise */}
+                        </div>
+
+                    <div className='infoTimer'>
+                        <div className='currentEx'>
+                            <h1>Current Exercise : {combined[workoutIterator]}{console.log(combined)}</h1>
+                            <h3>NEXT : {combined[workoutIterator+1]}</h3>
+                            </div>
+
+                        
+                    </div>
+                        
+                </div>   
+            </div>
+            </div>
+            <div className='right'>
+            <div className='box'>
+            
+             <h1>Workouts</h1>
                     <select onChange={workoutSelectHandler} name="workout-selection" id="workout-selection">
 
                                     {workouts.map(()=> {
@@ -159,9 +177,11 @@ const Timer = () => {
                         {workouts[workoutSelected].round5.map((item)=> {
                             return item + " | ";
                         } )}
+                        </div>
                 </div>
-            </div>
-        </div>
+                
+
+        </React.Fragment>
     )
 }
 
