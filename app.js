@@ -19,6 +19,10 @@ mongoose.connect(keys.mongoURI, {
 const userRouter = require('./routes/User');
 app.use('/user',userRouter);
 
+// group
+const groupRouter = require('./routes/GroupRouter');
+app.use('/user/groups', groupRouter);
+
 app.listen(5000,()=>{
     console.log('express server started');
 });

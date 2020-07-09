@@ -7,7 +7,7 @@ const User = require('../models/User');
 const Todo = require('../models/Todo');
 const Workout = require('../models/Workout');
 const Activityfeed = require('../models/Activityfeed');
-
+const Group = require('../models/Group');
 
 const signToken = userID =>{
     return JWT.sign({
@@ -54,7 +54,7 @@ userRouter.post('/login',passport.authenticate('local',{session : false}),(req,r
        const {_id,username,role} = req.user;
        const token = signToken(_id);
        res.cookie('access_token',token,{httpOnly: true, sameSite:true}); 
-       res.status(200).json({isAuthenticated : true,user : {username,role}});
+       res.status(200).json({isAuthenticated : true,user : {username, role}});
     }
 });
 
@@ -233,6 +233,41 @@ userRouter.post('/activityfeed',passport.authenticate('jwt',{session : false}),(
 
 
 
+// ANDY ADMIN SECTION
+
+// GET method - can be used in insomnia - http://localhost:5000/user/getallusers
+userRouter.get('/getallusers',(req,res)=>{
+    
+    User.find({}).exec((err,document)=>{
+        console.log(document)
+        if(err)
+            res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+            else{
+            res.status(200).json({document, authenticated : true});
+            }
+    })
+
+});
+
+// Method to delete a user
+userRouter.post('/getallusers', async (req,res)=>{
+    // let { user } = req.body;
+
+    User.findByIdAndDelete({}).exec((err,document)=>{
+        console.log(document)
+        if(err)
+            res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+            else{
+            res.status(200).json({document, authenticated : true});
+            }
+    })
+
+});
+
+
+// END OF ADMIN
+
+
 ///WORKOUT
 
 userRouter.get('/workout',passport.authenticate('jwt',{session : false}),(req,res)=>{
@@ -277,14 +312,6 @@ userRouter.get('/authenticated',passport.authenticate('jwt',{session : false}),(
     const {username,role} = req.user;
     res.status(200).json({isAuthenticated : true, user : {username,role}});
 });
-
-
-
-
-
-
-
-
 
 
 
