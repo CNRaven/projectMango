@@ -65,6 +65,11 @@
     color:white;
 }
 
+
+.currentEx h1 {
+    margin:5px 0;
+}
+
 .clock {
     background-image:url('./svg/timer.svg');
     min-height: 300px;
@@ -86,3 +91,21 @@
     max-height: 70px;
 }
 
+.selectTimer button {
+    padding:10px 30px;
+    margin: 10px 10px;
+    border-radius: 50px;
+    border: 2px solid grey;
+    color: white;
+    background-color: #ff206e;
+    border:none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.selectTimer select {
+    font-family: 'Montserrat', sans-serif;
+    padding:10px 30px;
+    margin: 10px 10px;
+    border-radius: 50px;
+    border: 2px solid grey;
+}

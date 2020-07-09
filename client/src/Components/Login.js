@@ -2,6 +2,7 @@ import React, {useState,useContext} from 'react';
 import AuthService from '../Services/AuthService';
 import Message from '../Components/Message';
 import {AuthContext} from '../Context/AuthContext';
+import './Login.css'
 
 const Login = props=>{
     const [user,setUser] = useState({username: "", password : ""});
@@ -20,7 +21,7 @@ const Login = props=>{
             if(isAuthenticated){
                 authContext.setUser(user);
                 authContext.setIsAuthenticated(isAuthenticated);
-                props.history.push('/todos');
+                props.history.push('/home');
             }
             else
                 setMessage(message);
@@ -30,9 +31,12 @@ const Login = props=>{
 
 
     return(
-        <div>
-            <form onSubmit={onSubmit}>
-                <h3>Please sign in</h3>
+
+        <React.Fragment>
+        <div className='middle'>
+            <div className='box'>
+            <form className='login' onSubmit={onSubmit}>
+            <h1>LOG IN</h1>
                 <label htmlFor="username" className="sr-only">Username: </label>
                 <input type="text" 
                        name="username" 
@@ -50,6 +54,8 @@ const Login = props=>{
             </form>
             {message ? <Message message={message}/> : null}
         </div>
+        </div>
+    </React.Fragment>
     )
 }
 

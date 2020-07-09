@@ -27,10 +27,10 @@ function App() {
       <Navbar />
           <div className="container">
             <div className='wrapper'>
-            <Route exact path="/" component={Home}/>
+            <Route exact path="/" component={Login}/>
             <UnPrivateRoute path="/login" component={Login}/>
-            {/* <UnPrivateRoute path="/signin" component={Signin}/> */}
             <UnPrivateRoute path="/register" component={Register}/>
+            <PrivateRoute path="/home" roles={["user","admin"]} component={Home}/>
             <PrivateRoute path="/todos" roles={["user","admin"]} component={Todos}/>
             <PrivateRoute path="/timer" roles={["user","admin"]} component={Timer}/>
             <PrivateRoute exact path="/profile" roles={["user","admin"]} component={Profile}/>

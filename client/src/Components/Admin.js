@@ -20,7 +20,8 @@ const Admin = ()=>{
         return <p>No data</p>
     }
     return(
-        <div>
+        <div className='middle'>
+            <div className='box'>
             <h1>Admin Page</h1>
                 
             <table className="center">
@@ -30,6 +31,7 @@ const Admin = ()=>{
                         <th scope="col">Name</th>
                         <th scope="col">Location</th>
                         <th scope="col">Role</th>
+                        <th scope="col">Delete</th>
                     </tr>
                     {
                         users.map((user)=> {
@@ -50,7 +52,8 @@ const Admin = ()=>{
                     }
                 </tbody>
             </table>
-            <br />    
+            <br />  
+            </div>  
         </div>
     )
 }
