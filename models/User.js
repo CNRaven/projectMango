@@ -50,7 +50,7 @@ const UserSchema = new mongoose.Schema({
     },
 
     todos : [{type : mongoose.Schema.Types.ObjectId, ref: 'Todo'}],
-    workout : [{type : mongoose.Schema.Types.ObjectId, ref: 'Workout'}]
+    workout : [{type : mongoose.Schema.Types.ObjectId, default: ()=> ({}), ref: 'Workout'}]
 });
 
 UserSchema.pre('save',function(next){

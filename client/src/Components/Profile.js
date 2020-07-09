@@ -97,9 +97,11 @@ const Profile = () =>{
         return <div>No data</div>;
     }
     return(
-        <div className="profile-container">
-            <div className="column">
-                <form onSubmit={onSubmit}>
+        <React.Fragment>
+            <div className="cl left">
+            <div className="box">
+                <h2>Update your profile</h2>
+                <form className='profileUp' onSubmit={onSubmit}>
                     <label htmlFor="profile-name">Enter your name: </label><br />
                     <input 
                         name="name"
@@ -157,13 +159,18 @@ const Profile = () =>{
                     <button type="submit">Update</button> 
                 </form>
             </div>
-            <div className="column">
-                second column
             </div>
-            <div className="column">
-                third column - workout list
+            <div className="cl middle">
+            <div className="box">
+                <h2>Your activity</h2>
             </div>
-        </div>
+            </div>
+            <div className="cl right">
+            <div className="box">
+            <h2>Workouts</h2>
+            </div>
+            </div>
+        </React.Fragment>
     );
 
 }

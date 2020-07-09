@@ -19,13 +19,16 @@ const signToken = userID =>{
 
 userRouter.post('/register',(req,res)=>{
     const { username,password,role } = req.body;
+    
     User.findOne({username},(err,user)=>{
         if(err)
             res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
         if(user)
             res.status(400).json({message : {msgBody : "Username is already taken", msgError: true}});
         else{
-            const newUser = new User({username,password,role});
+            const workout = new Workout();
+            workout.save();
+            const newUser = new User({username,password,role,workout});
             newUser.save(err=>{
                 if(err)
                     res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
@@ -35,6 +38,17 @@ userRouter.post('/register',(req,res)=>{
         }
     });
 });
+//create workout on register
+// userRouter.post('/registerworkout',(req,res)=>{
+// const workout = new Workout();
+// workout.save(err=>{
+//     if(err)
+//         res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+//     else{
+//         res.status(200).json({message : {msgBody : "Successfully created workout", msgError : false}});
+//         }
+//     })
+// });
 
 userRouter.post('/login',passport.authenticate('local',{session : false}),(req,res)=>{
     if(req.isAuthenticated()){
@@ -49,14 +63,44 @@ userRouter.get('/logout',passport.authenticate('jwt',{session : false}),(req,res
     res.clearCookie('access_token');
     res.json({user:{username : "", role : ""},success : true});
 });
+userRouter.post('/todo',passport.authenticate('jwt',{session : false}),(req,res)=>{
+    const todo = new Todo(req.body);
+    todo.save(err=>{
+        if(err)
+            res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+        else{
+            req.user.todos.push(todo);
+            req.user.save(err=>{
+                if(err)
+                    res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+                else
+                    res.status(200).json({message : {msgBody : "Successfully created todo", msgError : false}});
+            });
+        }
+    })
+});
+userRouter.post('/workout',passport.authenticate('jwt',{session : false}),async(req,res)=>{
+    console.log(req.body);
+    const {name, description, round1ex1, round1ex2, round1ex3, round1ex4, round2ex1, round2ex2, round2ex3, round2ex4, round3ex1, round3ex2, round3ex3, round3ex4, round4ex1, round4ex2, round4ex3, round4ex4, round5ex1, round5ex2, round5ex3, round5ex4} = req.body;
 
-userRouter.post('/workout',passport.authenticate('jwt',{session : false}),(req,res)=>{
-    const workout = new Workout(req.body);
+    const round1 = [round1ex1, round1ex2, round2ex3, round1ex4];
+    const round2 = [round2ex1, round2ex2, round2ex3, round2ex4];
+    const round3 = [round3ex1, round3ex2, round3ex3, round3ex4];
+    const round4 = [round4ex1, round4ex2, round4ex3, round4ex4];
+    const round5 = [round5ex1, round5ex2, round5ex3, round5ex4];
+
+    const workout = new Workout({
+        name, description, round1, round2, round3, round4, round5
+    });
+
+        // const saveWorkout = await workout.save();
+        // user.push(saveWorkout)
+    
     workout.save(err=>{
         if(err)
             res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
         else{
-            // req.user.todos.push(todo);
+            req.user.workout.push(workout);
             req.user.save(err=>{
                 if(err)
                     res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
@@ -104,7 +148,7 @@ userRouter.put('/profile',passport.authenticate('jwt',{session : false}), async 
     const { name,age,location, interests,about, goals } = req.body;
     const newUser = new User({ name, age, location, interests, about, goals });
     console.log(req.body)
-    User.findByIdAndUpdate({_id : req.user._id},{name, age, location, interests, goals},(err,newUser)=>{
+    User.findByIdAndUpdate({_id : req.user._id},{name, age, location, interests, about, goals},(err,newUser)=>{
         if(err)
             res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
         else{
@@ -150,6 +194,41 @@ userRouter.put('/profile',passport.authenticate('jwt',{session : false}), async 
 // });
 
 
+// ANDY ADMIN SECTION
+
+// GET method - can be used in insomnia - http://localhost:5000/user/getallusers
+userRouter.get('/getallusers',(req,res)=>{
+    
+    User.find({}).exec((err,document)=>{
+        console.log(document)
+        if(err)
+            res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+            else{
+            res.status(200).json({document, authenticated : true});
+            }
+    })
+
+});
+
+// Method to delete a user
+userRouter.post('/getallusers', async (req,res)=>{
+    // let { user } = req.body;
+
+    User.findByIdAndDelete({}).exec((err,document)=>{
+        console.log(document)
+        if(err)
+            res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+            else{
+            res.status(200).json({document, authenticated : true});
+            }
+    })
+
+});
+
+
+// END OF ADMIN
+
+
 ///WORKOUT
 
 userRouter.get('/workout',passport.authenticate('jwt',{session : false}),(req,res)=>{
@@ -167,16 +246,19 @@ userRouter.get('/workout',passport.authenticate('jwt',{session : false}),(req,re
     });
 });
 
-userRouter.get('/workout',passport.authenticate('jwt',{session : false}),(req,res)=>{
-    User.findById({_id : req.user._id}).populate('workout').exec((err,document)=>{
-        if(err)
-            res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
-        else{
-            res.status(200).json({profile : document.profile, authenticated : true});
-        }
-    });
-});
-
+// userRouter.post('/workout',(req,res)=>{
+    // console.log(req.body)
+    // const { username,password,role } = req.body;
+ 
+    //     const newWorkout = new workout({username,password,role,workout});
+    //         newWorkout.save(err=>{
+    //             if(err)
+    //                 res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+    //             else{
+    //                 res.status(201).json({message : {msgBody : "Workout successfully created", msgError: false}});
+    //         }
+    // });
+// });
 
 userRouter.get('/admin',passport.authenticate('jwt',{session : false}),(req,res)=>{
     if(req.user.role === 'admin'){
