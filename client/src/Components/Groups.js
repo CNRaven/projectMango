@@ -25,10 +25,16 @@ const Groups = () => {
         );
     });
 
+    const addCreatedGroupToState = (createdGroup) => {
+        let currentGroups = [...groups];
+        currentGroups.push(createdGroup);
+        setGroups(currentGroups);
+    }
+
     return (
 
         <div>
-            <CreateGroup />
+            <CreateGroup groupCreated={createdGroup => addCreatedGroupToState(createdGroup)}/>
             <h1>All existing groups</h1>
             {groupsElements}
         </div>

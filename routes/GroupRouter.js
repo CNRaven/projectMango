@@ -37,7 +37,7 @@ groupRouter.post('/', passport.authenticate('jwt',{session : false}), async (req
             name: saveGroup.name,
             description: saveGroup.description
         }
-        res.json(filteredSaveGroup);
+        res.status(200).json(filteredSaveGroup);
 
     } catch (err) {
         res.status(500).json({ error: err.message });
