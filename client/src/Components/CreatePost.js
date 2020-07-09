@@ -7,8 +7,9 @@ const CreatePost = props => {
                 name="createPost"
                 onChange={props.textOnChange}
                 rows="4"
-                cols="" 
-                value={props.textValue}/>
+                cols="50" 
+                value={props.textValue}
+                style={{resize: 'none'}}/>
             <button onClick={props.onSubmitPost}>Post</button>
         </div>
     );
