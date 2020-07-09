@@ -10,7 +10,9 @@ import Timer  from './Components/Timer';
 import PrivateRoute from './hocs/PrivateRoute';
 import UnPrivateRoute from './hocs/UnPrivateRoute';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import './App.css'
+import './App.css';
+import Groups from './Components/Groups';
+import Group from './Components/Group';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         <PrivateRoute path="/todos" roles={["user","admin"]} component={Todos}/>
         <PrivateRoute path="/timer" roles={["user","admin"]} component={Timer}/>
         <PrivateRoute exact path="/profile" roles={["user","admin"]} component={Profile}/>
+        <PrivateRoute exact path="/groups" roles={["user","admin"]} component={Groups}/>
+        <PrivateRoute exact path="/group" roles={["user","admin"]} component={Group}/>
         {/* <PrivateRoute path="/profile" roles={["user","admin"]} component={Profile}/> */}
         <PrivateRoute path="/admin" roles={["admin"]} component={Admin}/>
       </Router>

@@ -61,6 +61,11 @@ const Navbar = props =>{
                         Timer
                     </li>
                 </Link>
+                <Link to="/groups">
+                    <li className="nav-item nav-link">
+                        Groups
+                    </li>
+                </Link>
                 {
                     user.role === "admin" ? 
                     <Link to="/admin">

@@ -12,9 +12,9 @@ const Timer = () => {
     useEffect(()=>{
         WorkoutService.getWorkout().then(data =>{
             setWorkouts(data.workout);
-            // console.log(data);
+            console.log("data", data);
             // console.log('data.user_profile', data.user_profile);
-        }).then(mapWorkouts);
+        }).then();
     },[]);
 
     
@@ -54,7 +54,7 @@ const Timer = () => {
                 <div className='column-right'>
                         {
                         
-                        console.log(workouts[0])
+                        console.log(workouts)
                         
                         }
                 </div>
