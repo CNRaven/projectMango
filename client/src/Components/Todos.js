@@ -49,17 +49,15 @@ const Todos = props =>{
 
     return(
         <React.Fragment>
-        <div classname= 'right'><div className='box'><h2>Test</h2></div></div>
-        <div classname='cl right'><div className='box'><h2>Achievements</h2>            
+        <div className='left'><div className='box'><h2>Test</h2></div></div>
+       
+        <div className='middle'><div className='box'><h2>Achievements</h2>            
             <ul className="list-group">
-                {/* {
+                {
                     todos.map(todo =>{
                         return <TodoItem key={todo._id} todo={todo}/>
                     })
-                } */}
-                <li>Test1</li>
-                <li>Test2</li>
-                <li>Test3</li>
+                }
             </ul>
             <br/>
             <form className='todo' onSubmit={onSubmit}>
@@ -74,8 +72,9 @@ const Todos = props =>{
             </form>
             {message ? <Message message={message}/> : null}
             </div>
+             
         </div>
-
+        <div className='right'><div className='box'><h2>Test</h2></div></div>
         
         </React.Fragment>
     );

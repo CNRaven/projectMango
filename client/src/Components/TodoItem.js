@@ -2,10 +2,10 @@ import React from 'react';
 import './Todos.css';
 const TodoItem = props =>{
     return (
-        <div>
+        <React.Fragment>
         {console.log(props)}
         <li>{props.todo.name}</li>
-        </div>
+        </React.Fragment>
     )
 }
 
