@@ -9,6 +9,7 @@ import Register from './Components/Register';
 import Admin  from './Components/Admin';
 import Profile  from './Components/Profile';
 import Timer  from './Components/Timer';
+import Getallusers  from './Components/Getallusers';
 import Workoutnew  from './Components/Workoutnew';
 import PrivateRoute from './hocs/PrivateRoute';
 import UnPrivateRoute from './hocs/UnPrivateRoute';
@@ -19,6 +20,7 @@ function App() {
   return (
     <div>
       <Router>
+
       <Navbar />
         <div className="container">
           <div className='wrapper'>
@@ -32,6 +34,7 @@ function App() {
           <PrivateRoute exact path="/profile" roles={["user","admin"]} component={Profile}/>
           <PrivateRoute exact path="/workoutnew" roles={["user","admin"]} component={Workoutnew}/>
           <PrivateRoute path="/admin" roles={["admin"]} component={Admin}/>
+          <PrivateRoute path="/getusers" roles={["admin"]} component={Getallusers}/>
           </div> 
         </div>
       </Router>
