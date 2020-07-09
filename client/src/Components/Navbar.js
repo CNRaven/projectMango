@@ -61,6 +61,11 @@ const Navbar = props =>{
                         TIMER
                     </li>
                 </Link>
+                <Link to="/groups">
+                    <li className="nav-item nav-link">
+                        Groups
+                    </li>
+                </Link>
                 <Link to="/workoutnew">
                     <li className="nav-item nav-link">
                         Workout new

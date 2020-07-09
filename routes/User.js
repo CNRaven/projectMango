@@ -6,6 +6,8 @@ const JWT = require('jsonwebtoken');
 const User = require('../models/User');
 const Todo = require('../models/Todo');
 const Workout = require('../models/Workout');
+const Group = require('../models/Group');
+
 
 
 const signToken = userID =>{
@@ -53,7 +55,7 @@ userRouter.post('/login',passport.authenticate('local',{session : false}),(req,r
        const {_id,username,role} = req.user;
        const token = signToken(_id);
        res.cookie('access_token',token,{httpOnly: true, sameSite:true}); 
-       res.status(200).json({isAuthenticated : true,user : {username,role}});
+       res.status(200).json({isAuthenticated : true,user : {username, role}});
     }
 });
 
@@ -271,14 +273,6 @@ userRouter.get('/authenticated',passport.authenticate('jwt',{session : false}),(
     const {username,role} = req.user;
     res.status(200).json({isAuthenticated : true, user : {username,role}});
 });
-
-
-
-
-
-
-
-
 
 
 
