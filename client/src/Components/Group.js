@@ -109,6 +109,12 @@ const Group = props => {
          + dateTime.getSeconds();
     }
 
+    const isUserAllowedToDeletePost = (post) => {
+        return group.loggedInUserDetails.isGroupAdmin ||
+            (group.loggedInUserDetails.isGroupMember &&
+            post.createdBy == group.loggedInUserDetails.username);
+    }
+
     let postsElements = group.feed.map(post => {
         return (
             <Post 
@@ -120,14 +126,10 @@ const Group = props => {
                 likes={post.likes}
                 likeBtnOnClick={() => likeBtnOnClickHandler(post.id)}
                 deleteBtnOnClick={() => deleteBtnOnClickHandler(post.id)}
-                // isUserAllowedToDelete={isUserAllowedToDeletePost(post)}
+                isUserAllowedToDelete={isUserAllowedToDeletePost(post)}
                 />
         )
     });
-
-    const isUserAllowedToDeletePost = (post) => {
-
-    }
 
     const deleteGroupBtnHandler = () => {
         GroupsService.deleteGroupById(group.id).then(data => {
@@ -230,6 +232,11 @@ const Group = props => {
         });
     }
 
+    const canUserPostInGroup = () => {
+        return group.loggedInUserDetails.isGroupAdmin ||
+            group.loggedInUserDetails.isGroupMember;
+    }
+
     return (
         <div>
             <div>
@@ -238,10 +245,14 @@ const Group = props => {
             </div>
             <div>
                 <p>Feed</p>
-                <CreatePost 
+                {
+                    canUserPostInGroup()
+                    ? <CreatePost 
                     textValue={post.text} 
                     onSubmitPost={onSubmitPostHandler} 
                     textOnChange={postTextOnChangeHandler} />
+                    : <p>You have to be a member of this group to be able add and delete previous posts.</p>
+                }
                 {postsElements}
             </div>
             <div>
