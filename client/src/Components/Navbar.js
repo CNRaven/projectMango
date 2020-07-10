@@ -71,11 +71,11 @@ const Navbar = props =>{
                         NEW WORKOUT
                     </li>
                 </Link>          
-                <Link to="/workoutedit">
+                {/* <Link to="/workoutedit">
                     <li className="nav-item nav-link">
                        EDIT WORKOUT 
                     </li>
-                </Link>
+                </Link> */}
             
 
                 {/* <Link to="/getusers">

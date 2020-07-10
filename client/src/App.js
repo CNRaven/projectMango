@@ -35,7 +35,7 @@ function App() {
             <PrivateRoute path="/timer" roles={["user","admin"]} component={Timer}/>
             <PrivateRoute exact path="/profile" roles={["user","admin"]} component={Profile}/>
             <PrivateRoute exact path="/workoutnew" roles={["user","admin"]} component={Workoutnew}/>
-            <PrivateRoute exact path="/workoutedit" roles={["user","admin"]} component={Workoutedit}/>
+            {/* <PrivateRoute exact path="/workoutedit" roles={["user","admin"]} component={Workoutedit}/> */}
             <PrivateRoute exact path="/activityfeed" roles={["user","admin"]} component={Activityfeed}/>
             <PrivateRoute exact path="/groups" roles={["user","admin"]} component={Groups}/>
             <PrivateRoute exact path="/group" roles={["user","admin"]} component={Group}/>

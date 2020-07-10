@@ -250,47 +250,43 @@ const Group = props => {
 
     return (
         <React.Fragment>
-        <div className='left'><div className='box'>
-        <h2>Group admins</h2>
-        {adminsElements}
-        </div></div>
-        <div className='middle'>
-            <div className='box'>
-                <h1>Feed</h1>
-                <h2>{group.name}</h2>
-                <p>{group.description}</p>   
-
-                <div className='FeedGroup'>
-                <h2>Create a post</h2>
-                {
-                    canUserPostInGroup()
-                    ? <CreatePost 
-                    textValue={post.text} 
-                    onSubmitPost={onSubmitPostHandler} 
-                    textOnChange={postTextOnChangeHandler} />
-                    : <p>You have to be a member of this group to be able add and delete previous posts.</p>
-                }
-
-            </div>
-
-            <div>
-                <p>Group admins</p>
-                {adminsElements}
-                <p>Group members</p>
-                {membersElements}
-                <div>
-                    {deleteGroupButton}
-                    {joinOrLeaveGroupButton}
+            <div className='left'>
+                <div className='box'>
+                    <h2>Group admins</h2>
+                    {adminsElements}
+                    <div>
+                        {deleteGroupButton}
+                    </div>
                 </div>
             </div>
-        </div>
-        <div className='right'>
-        <div className='box'>
-        <h2>Group members</h2>
-        
-        {membersElements}
-        </div>
-         </div>
+            <div className='middle'>
+                <div className='box'>
+                    <h1>Feed</h1>
+                    <h2>{group.name}</h2>
+                    <p>{group.description}</p>   
+
+                    <div className='FeedGroup'>
+                        <h2>Create a post</h2>
+                        {
+                            canUserPostInGroup()
+                            ? <CreatePost 
+                            textValue={post.text} 
+                            onSubmitPost={onSubmitPostHandler} 
+                            textOnChange={postTextOnChangeHandler} />
+                            : <p>You have to be a member of this group to be able add and delete previous posts.</p>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div className='right'>
+                <div className='box'>
+                    <h2>Group members</h2>
+                    {membersElements}
+                    <div>
+                        {joinOrLeaveGroupButton}
+                    </div>
+                </div>
+            </div>
          </React.Fragment>
     )
 }
