@@ -3,10 +3,27 @@ table, th, td {
     border-collapse: collapse;
     background-color: white;
 }
+
 table.center {
     margin-left: auto;
     margin-right: auto;
   }
 th, td {
     padding: 20px;
+}
+
+th {
+    background-color: #41ead4;
+    color:white;
+}
+
+.remove-button {
+    padding:10px 30px;
+    margin: 10px 10px;
+    border-radius: 50px;
+    border: 2px solid grey;
+    color: white;
+    background-color: #ff206e;
+    border:none;
+    font-family: 'Montserrat', sans-serif;
 }

@@ -62,3 +62,8 @@ body {
 
     }
   }
+
+
+  button {
+      font-weight: 600;
+  }

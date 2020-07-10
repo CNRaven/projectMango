@@ -102,7 +102,7 @@ const Profile = () =>{
         <React.Fragment>
             <div className="cl left">
             <div className="box">
-                <h2>Update your profile</h2>
+                <h1>Update your profile</h1>
                 <form className='profileUp' onSubmit={onSubmit}>
                     <label htmlFor="profile-name">Enter your name: </label><br />
                     <input 
@@ -164,13 +164,13 @@ const Profile = () =>{
             </div>
             <div className="cl middle">
             <div className="box">
-                <h2>Your activity</h2>
+                <h1>Your activity</h1>
                 <Activityfeed />
             </div>
             </div>
             <div className="cl right">
             <div className="box">
-            <h2>Workouts</h2>
+            <h1>Workouts</h1>
             <DisplayWorkouts />
             </div>
             </div>

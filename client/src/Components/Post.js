@@ -4,20 +4,30 @@ const Post = props => {
     let deletePostBtn = null;
     if (props.isUserAllowedToDelete) {
         deletePostBtn = (  
-            <button onClick={props.deleteBtnOnClick}>Delete post</button>
+            <button className='like-btn' onClick={props.deleteBtnOnClick}>Delete post</button>
         );
     }
 
     return (
-        <div>
-            <p>Created by: {props.createdBy}</p>
+        <div className='box'>
+            <img src='run.jpg'></img>
+            <h3>{props.text}</h3>
+            <div className='postBoxInfo'>
+            <button className='like-btn' onClick={props.likeBtnOnClick}>
+                Like : {props.likes}
+               
+                </button>
+                <div className='labelPost'>
+            <h4>Created by: {props.createdBy}</h4>
             <p>{props.dateTimeCreated}</p>
-            <p>{props.text}</p>
-            <div>
-                <button onClick={props.likeBtnOnClick}>Like</button>
-                <span>{props.likes}</span>
             </div>
-            {deletePostBtn}
+            <div>
+                
+                
+                {deletePostBtn}
+            </div>
+            </div>
+            
         </div>
     );
 }

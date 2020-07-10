@@ -102,10 +102,38 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.selectTimer select {
+ select {
     font-family: 'Montserrat', sans-serif;
     padding:10px 30px;
     margin: 10px 10px;
     border-radius: 50px;
     border: 2px solid grey;
+}
+ .interval {
+    font-family: 'Montserrat', sans-serif;
+    padding:10px 30px;
+    margin: 10px 10px;
+    border-radius: 20px;
+    
+    background-color: #ff206e;
+    color:white;
+}
+
+.labelEx {
+    text-align: center;
+    padding:10px;
+    margin: 10px 5px;
+    border-radius: 50px;
+    border: 2px solid grey;
+    color: white;
+    background-color: #ff206e;
+    border:none;
+    font-family: 'Montserrat', sans-serif;
+    width:45%;
+}
+
+.roundEx {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 }

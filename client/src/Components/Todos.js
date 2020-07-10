@@ -53,7 +53,7 @@ const Todos = props =>{
         <div className='left'><div className='quote'><h3>“Never give up, never give in, and when the upper hand is ours, may we have the ability to handle the win with the dignity that we absorbed the loss.”</h3></div></div>
         
        
-        <div className='middle'><div className='box'><h2>Achievements</h2>            
+        <div className='middle'><div className='box'><h1>Achievements</h1>            
             <ul className="list-group">
                 {
                     todos.map(todo =>{

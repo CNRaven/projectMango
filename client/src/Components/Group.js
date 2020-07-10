@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect} from 'react';
 import GroupsService from '../Services/GroupsService';
 import Post from './Post';
 import CreatePost from './CreatePost';
+import './Group.css';
 
 const Group = props => {
     const [group, setGroup] = useState({
@@ -32,13 +33,13 @@ const Group = props => {
 
     let membersElements = group.members.map(member => {
         return (
-            <p key={member.id}>{member.username}</p>
+            <div className='labelUser' key={member.id}>{member.username}</div>
         );
     });
 
     let adminsElements = group.admins.map(admin => {
         return (
-            <p key={admin.id}>{admin.username}</p>
+            <div className='labelUser' key={admin.id}>{admin.username}</div>
         );
     });
     
@@ -190,15 +191,15 @@ const Group = props => {
     let actionButton = null;
     if (group.loggedInUserDetails.isGroupAdmin) {
         actionButton = (
-            <button onClick={deleteGroupBtnHandler}>Delete group</button>
+            <button className='group-btn' onClick={deleteGroupBtnHandler}>Delete group</button>
         );
     } else if (group.loggedInUserDetails.isGroupMember) {
         actionButton = (
-            <button onClick={leaveGroupBtnHandler}>Leave group</button>
+            <button className='group-btn' onClick={leaveGroupBtnHandler}>Leave group</button>
         );
     } else {
         actionButton = (
-            <button onClick={joinGroupBtnHandler}>Join group</button>
+            <button className='group-btn' onClick={joinGroupBtnHandler}>Join group</button>
         );
     }
 
@@ -238,13 +239,19 @@ const Group = props => {
     }
 
     return (
-        <div>
-            <div>
-                <p>{group.name}</p>
-                <p>{group.description}</p>
-            </div>
-            <div>
-                <p>Feed</p>
+        <React.Fragment>
+        <div className='left'><div className='box'>
+        <h2>Group admins</h2>
+        {adminsElements}
+        </div></div>
+        <div className='middle'>
+            <div className='box'>
+                <h1>Feed</h1>
+                <h2>{group.name}</h2>
+                <p>{group.description}</p>   
+
+                <div className='FeedGroup'>
+                <h2>Create a post</h2>
                 {
                     canUserPostInGroup()
                     ? <CreatePost 
@@ -253,16 +260,20 @@ const Group = props => {
                     textOnChange={postTextOnChangeHandler} />
                     : <p>You have to be a member of this group to be able add and delete previous posts.</p>
                 }
-                {postsElements}
+
             </div>
-            <div>
-                <p>Group admins</p>
-                {adminsElements}
-                <p>Group members</p>
-                {membersElements}
+                {postsElements}
                 {actionButton}
             </div>
         </div>
+        <div className='right'>
+        <div className='box'>
+        <h2>Group members</h2>
+        
+        {membersElements}
+        </div>
+         </div>
+         </React.Fragment>
     )
 }
 
