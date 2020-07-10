@@ -250,16 +250,18 @@ userRouter.get('/getallusers',(req,res)=>{
 });
 
 // Method to delete a user
-userRouter.post('/getallusers', async (req,res)=>{
-    // let { user } = req.body;
+userRouter.post('/delete', async (req,res)=>{
+    let user = req.body;
+    console.log(user._id);
 
-    User.findByIdAndDelete({}).exec((err,document)=>{
-        console.log(document)
-        if(err)
+    await User.findByIdAndDelete({_id: user._id}).exec((err,document)=>{
+        console.log(document);
+        if(err) {
             res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
-            else{
+        }
+        else {
             res.status(200).json({document, authenticated : true});
-            }
+        }
     })
 
 });

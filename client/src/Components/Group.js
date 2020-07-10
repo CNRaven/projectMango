@@ -188,18 +188,27 @@ const Group = props => {
         });
     }
 
-    let actionButton = null;
+    let deleteGroupButton = null;
+    let joinOrLeaveGroupButton = null;
+
+    if (group.loggedInUserDetails.isAdminUser) {
+        deleteGroupButton = (
+            <button onClick={deleteGroupBtnHandler}>Delete group</button>
+        );
+    }
     if (group.loggedInUserDetails.isGroupAdmin) {
-        actionButton = (
+
+        deleteGroupButton = (
             <button className='group-btn' onClick={deleteGroupBtnHandler}>Delete group</button>
         );
     } else if (group.loggedInUserDetails.isGroupMember) {
-        actionButton = (
+        joinOrLeaveGroupButton = (
             <button className='group-btn' onClick={leaveGroupBtnHandler}>Leave group</button>
         );
     } else {
-        actionButton = (
+        joinOrLeaveGroupButton = (
             <button className='group-btn' onClick={joinGroupBtnHandler}>Join group</button>
+
         );
     }
 
@@ -234,8 +243,9 @@ const Group = props => {
     }
 
     const canUserPostInGroup = () => {
-        return group.loggedInUserDetails.isGroupAdmin ||
-            group.loggedInUserDetails.isGroupMember;
+        return group.loggedInUserDetails.isAdminUser
+            || group.loggedInUserDetails.isGroupAdmin
+            || group.loggedInUserDetails.isGroupMember;
     }
 
     return (
@@ -262,8 +272,16 @@ const Group = props => {
                 }
 
             </div>
-                {postsElements}
-                {actionButton}
+
+            <div>
+                <p>Group admins</p>
+                {adminsElements}
+                <p>Group members</p>
+                {membersElements}
+                <div>
+                    {deleteGroupButton}
+                    {joinOrLeaveGroupButton}
+                </div>
             </div>
         </div>
         <div className='right'>
