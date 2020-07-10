@@ -7,17 +7,17 @@ const Timer = () => {
     
     let [startTimer, setStartTimer] = useState(false);
     let combined = [];
-    let exerciseTime = null;
     let num = -1;
 
     const [workouts,setWorkouts] = useState(null);
-    const [counter, setCounter] = useState(5);
+    const [counter, setCounter] = useState(900);
     const [workoutSelected, setWorkoutSelected] = useState(0);
+
+    const [changeWorkoutTime, setChangeWorkoutTime] = useState(30000);
 
     const [timerMinutes, setTimerMinutes] = useState('00');
     const [timerSeconds, setTimerSeconds] = useState('00');
-    const [timerThirty, setTimerThirty] = useState('00');
-    const [workoutTime, setWorkoutTime] = useState(30)
+    
     const [workoutIterator, setWorkoutIterator] = useState(0);
     
 
@@ -29,11 +29,8 @@ const Timer = () => {
     const calcTime = (counter) => {
         const minutes = Math.floor(counter / 60);
         const seconds = Math.floor(counter % 60);
-        const thirty = Math.floor(counter % workoutTime);
-
         setTimerMinutes(minutes);
         setTimerSeconds(seconds);
-        setTimerThirty(thirty);
     }
     
    var toggleTimer = () => {
@@ -51,24 +48,31 @@ const Timer = () => {
     useEffect(() => {
         if(startTimer) {
             counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);  
-            counter > 0 && setTimeout(() => setWorkoutIterator(workoutIterator+1), 30000);  
+            counter > 0 && setTimeout(() => setWorkoutIterator(workoutIterator+1), changeWorkoutTime);  
             calcTime(counter);
         }
 
       }, [counter, startTimer]);
     
+     
+
       const timeInputHandler = (e) =>{
         console.log(e.target.value);
         setCounter(e.target.value);
         if(e.target.value == 900) {
-            setWorkoutTime(30);
-            console.log(30);
+            setChangeWorkoutTime(30000);
+            console.log(changeWorkoutTime)
+            // console.log(30);
+
         } else if (e.target.value == 1800) {
-            setWorkoutTime(60);
-            console.log(60);
+            setChangeWorkoutTime(60000);
+            console.log(changeWorkoutTime)
+            // console.log(60);
+
         } else if (e.target.value == 2700) {
-            setWorkoutTime(90);
-            console.log(90);
+            setChangeWorkoutTime(90000);
+            console.log(changeWorkoutTime)
+            // console.log(90);
         } else {
             console.log("something went wrong")
         }
@@ -131,7 +135,7 @@ const Timer = () => {
 
                     <div className='infoTimer'>
                         <div className='currentEx'>
-                            <h1>Current Exercise : {combined[workoutIterator]}{console.log(combined)}</h1>
+                            <h1>Current Exercise : {combined[workoutIterator]}</h1>
                             <h3>NEXT : {combined[workoutIterator+1]}</h3>
                             </div>
 
@@ -149,7 +153,7 @@ const Timer = () => {
                     <select onChange={workoutSelectHandler} name="workout-selection" id="workout-selection">
                                     {workouts.map(()=> {
                                         num = num+1;
-                                         return <option value={num}>{workouts[num].name}</option>
+                                         return <option key={num} value={num}>{workouts[num].name}</option>
                                     } )}
                         </select>
                         {
