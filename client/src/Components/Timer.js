@@ -137,9 +137,9 @@ const Timer = () => {
 
                     <div className='infoTimer'>
                         <div className='currentEx'>
-                        <h2>{counter === 0 ? "complete" : "Keep going"}</h2>
-                            <h1>Current Exercise : {combined[workoutIterator]}{console.log(combined)}</h1>
-                            <h2>NEXT : {combined[workoutIterator+1]}</h2>
+                        <h1>Current Exercise : {combined[workoutIterator]}</h1>
+                            <h3>NEXT : {combined[workoutIterator+1]}</h3>
+                        <h2>{counter === 0 ? "Complete" : "Keep going"}</h2>
                             
                             </div>
 
