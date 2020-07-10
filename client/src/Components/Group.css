@@ -1,0 +1,73 @@
+.CreatePost {
+    display:flex;
+    justify-content: center;
+    flex-flow: column wrap;
+}
+
+.CreatePost button {
+    padding:20px;
+    margin: 20px;
+    border-radius: 50px;
+    border: 1px solid grey;
+    color: white;
+    background-color: #ff206e;
+    border:none;
+    font-family: 'Montserrat', sans-serif;
+
+
+}
+.CreatePost textarea {
+    padding:20px;
+    margin: 20px;
+    border-radius: 20px;
+    border: 1px solid grey;
+
+    font-family: 'Montserrat', sans-serif;
+
+
+}
+
+
+.FeedGroup {
+    background-color: #41ead4;
+padding: 20px;
+margin: 10px 25px 100px 25px ;
+border-radius: 20px;
+text-align: center;
+-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.10);
+-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.10);
+box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.10);
+}
+
+
+.FeedGroup h2 {
+    color:white;
+}
+
+.labelUser {
+    text-align: center;
+    padding:10px;
+    margin: 10px 5px;
+    border-radius: 50px;
+    border: 2px solid grey;
+    color: white;
+    background-color: #ff206e;
+    border:none;
+    font-family: 'Montserrat', sans-serif;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.group-btn {
+    padding:10px 20px;
+    margin: 20px 0;
+    border-radius: 50px;
+    border: 2px solid grey;
+    color: white;
+    background-color: #ff206e;
+    border:none;
+    font-family: 'Montserrat', sans-serif;
+
+
+}

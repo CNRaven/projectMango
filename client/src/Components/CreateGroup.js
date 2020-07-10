@@ -32,7 +32,7 @@ const CreateGroup = ({ groupCreated }) => {
     return (
         <div>
             <h1>Create a group:</h1>
-            <form onSubmit={onSubmit}>
+            <form className='register' onSubmit={onSubmit}>
                 <label htmlFor="group-name">Group name:</label><br />
                 <input 
                         name="name"

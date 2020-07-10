@@ -95,16 +95,23 @@ const Timer = () => {
 
             <div className='left'>
                 <div className='box'>
+                    
                     <h1>Intervals</h1>
-                    <p>15 mins = 30 seconds per exercise</p>
-                    <img src='arrow.svg' className='arrow' ></img>
-                    <p> 30 second break per round</p>
-                    <p>30 mins = 60 seconds per exercise</p>
-                    <img src='arrow.svg' className='arrow' ></img>
-                    <p> 60 second break per round</p>
-                    <p>45 mins = 90 seconds per exercise</p>
-                    <img src='arrow.svg' className='arrow' ></img>
-                    <p> 90 second break per round</p>
+                    <div className='interval'>
+                        <p>15 mins = 30 seconds per exercise</p>
+                        <img src='arrow.svg' className='arrow' ></img>     
+                        <p> 30 second break per round</p>
+                    </div>
+                    <div className='interval'>
+                        <p>30 mins = 60 seconds per exercise</p>
+                        <img src='arrow.svg' className='arrow' ></img>
+                        <p> 60 second break per round</p>
+                    </div>
+                    <div className='interval'>
+                        <p>45 mins = 90 seconds per exercise</p>
+                        <img src='arrow.svg' className='arrow' ></img>
+                        <p> 90 second break per round</p>
+                    </div>
                 </div>
             </div>
 
@@ -133,8 +140,7 @@ const Timer = () => {
                         </div>
 
                     <div className='infoTimer'>
-                        <div className='currentEx'>
-
+                        <div className='currentEx'>           
                             <h1>Current Exercise : {combined[workoutIterator]}</h1>
                             <h3>NEXT : {combined[workoutIterator+1]}</h3>
                         <h2>{counter === 0 ? "Complete" : "Keep going"}</h2>
@@ -162,27 +168,36 @@ const Timer = () => {
                         {
                         // console.log(workouts[0])
                         }
-                        <h2>{workouts[workoutSelected].name}</h2>
                         <h2>Round 1</h2>
+                        <div className='roundEx'>
                         {workouts[workoutSelected].round1.map((item)=> {
-                            return item + " | ";
+                            return <div className='labelEx'>{item}</div>;
                         } )}
+                        </div>
                         <h2>Round 2</h2>
+                        <div className='roundEx'>
                         {workouts[workoutSelected].round2.map((item)=> {
-                            return item + " | ";
+                            return <div className='labelEx'>{item}</div>;
                         } )}
+                        </div>
                         <h2>Round 3</h2>
+                        <div className='roundEx'>
                         {workouts[workoutSelected].round3.map((item)=> {
-                            return item + " | ";
+                            return <div className='labelEx'>{item}</div>;
                         } )}
+                        </div>
                         <h2>Round 4</h2>
+                        <div className='roundEx'>                       
                         {workouts[workoutSelected].round4.map((item)=> {
-                            return item + " | ";
+                            return <div className='labelEx'>{item}</div>;
                         } )}
+                        </div>
                         <h2>Round 5</h2>
+                        <div className='roundEx'>                     
                         {workouts[workoutSelected].round5.map((item)=> {
-                            return item + " | ";
+                            return <div className='labelEx'>{item}</div>;
                         } )}
+                        </div>
                         </div>
                 </div>
                 

@@ -36,6 +36,17 @@ const Activityfeed = () => {
         });
     }
 
+    const transformDateTimeCreated = (dateTimeCreated) => {
+        let dateTime = new Date(dateTimeCreated);
+        return 'Date: ' + dateTime.getDate() + '-'
+         + dateTime.getMonth() + '-'
+         + dateTime.getFullYear() + ', Time: '
+         + dateTime.getHours() + ":" +
+         + dateTime.getMinutes() + ":" +
+         + dateTime.getSeconds();
+    }
+
+
     if (!activityFeed) {
         return <div>No data</div>;
     }
@@ -54,20 +65,25 @@ const Activityfeed = () => {
                             placeholder='what is on your mind?'
                         />
 
-                        <button type="submit">Update</button> 
+                        <button type="submit">Add</button> 
 
                     </form>
                     </div>
-                    <hr />
+
+
+                    
                     <div>
                     {
                         activityFeed.activityfeed.map((feed)=> {
                             if(activityFeed) {
                                 return (
-                                    <div key={feed._id}>
-                                        <h1>{feed.text}</h1>
-                                        <h3>{feed.date}</h3>
-                                        <hr />
+                                    
+                                    <div className='box' key={feed._id}>
+                                        <div className='postBoxInfo'>
+                                        <img src='avatar.jpg'></img>
+                                        <h3>{feed.text}</h3>
+                                        <p>{transformDateTimeCreated(feed.date)}</p>
+                                        </div>
                                     </div>
                                 )
                             }

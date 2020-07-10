@@ -1,8 +1,10 @@
 import React from 'react';
+import './Group.css';
 
 const CreatePost = props => {
     return (
-        <div>
+        <React.Fragment>
+            <div className='CreatePost'>
             <textarea
                 name="createPost"
                 onChange={props.textOnChange}
@@ -11,7 +13,8 @@ const CreatePost = props => {
                 value={props.textValue}
                 style={{resize: 'none'}}/>
             <button onClick={props.onSubmitPost}>Post</button>
-        </div>
+            </div>
+            </React.Fragment>
     );
 }
 
