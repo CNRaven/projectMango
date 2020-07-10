@@ -8,14 +8,6 @@
     display: flex;
     flex-flow: column wrap;
     padding: 50px;
-    background-color: #fff;
-    width:500px;
-    border-radius: 20px;
-    animation: fadeInLeft;
-    animation-duration: 1s;
-    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.10);
-    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.10);
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.10);
 
 }
 
@@ -51,3 +43,40 @@
     text-align: center;
 }
 
+
+
+.sright {
+    background-image: url("/bgright.jpg");
+    background-repeat: no-repeat;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.logo {
+    max-height: 150px;
+    margin-bottom:25px;
+    animation: fadeInLeft;
+    animation-duration: 1s;
+
+}
+
+
+.description {
+    display:flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    width:70%;
+    color:white;
+}
+
+.description h1{
+    font-size: 36pt;
+    margin:5px 0px;
+}
+.description h1{
+    font-size: 36pt;
+    margin:10px 0px;
+}

@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect} from 'react';
 import GroupsService from '../Services/GroupsService';
 
-const CreateGroup = () => {
+const CreateGroup = ({ groupCreated }) => {
     const [group, setGroup] = useState({
         name: "",
         description: ""
@@ -16,18 +16,18 @@ const CreateGroup = () => {
 
     const onSubmit = e =>{
         e.preventDefault();
-        GroupsService.createGroup(group).then(data=>{
-             
-            setGroup({
-                name: "",
-                description: ""
-            });
+        GroupsService.createGroup(group).then(data=> {
+            resetGroupDetailsInState();
+            groupCreated(data);
         });
     }
 
-    useEffect(() => {
-        
-    }, []);
+    const resetGroupDetailsInState = () => {
+        setGroup({
+            name: "",
+            description: ""
+        });
+    }
 
     return (
         <div>

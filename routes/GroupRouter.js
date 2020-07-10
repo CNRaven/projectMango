@@ -37,7 +37,7 @@ groupRouter.post('/', passport.authenticate('jwt',{session : false}), async (req
             name: saveGroup.name,
             description: saveGroup.description
         }
-        res.json(filteredSaveGroup);
+        res.status(200).json(filteredSaveGroup);
 
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -73,23 +73,31 @@ groupRouter.get('/:groupId', passport.authenticate('jwt', {session: false}), asy
 
         let loggedInUser = await User.findById({_id: userId});
 
-        let loggedInUserDetails = {
-            username: loggedInUser.username,
-            isGroupAdmin: false,
-            isGroupMember: false
-        };
+        let loggedInUserDetails = {};
+        
+        if(loggedInUser) {
+            loggedInUserDetails = {
+                username: loggedInUser.username,
+                isAdminUser: loggedInUser.role == "admin",
+                isGroupAdmin: false,
+                isGroupMember: false
+            };
+        }
 
         let adminsWithUsernames = [];
         await Promise.all(group.admins.map(async (adminId) => {
             let user = await User.findById({_id: adminId});
 
-            if (user._id.toString() == userId) {               
-                loggedInUserDetails.isGroupAdmin = true;
-            }
-
             let admin = {
                 id: adminId,
-                username: user.username
+                username: 'Deleted user'
+            }
+
+            if (user) {
+                if (user._id.toString() == userId) {               
+                    loggedInUserDetails.isGroupAdmin = true;
+                }
+                admin.username = user.username;
             }
             adminsWithUsernames.push(admin);
         }));
@@ -98,13 +106,16 @@ groupRouter.get('/:groupId', passport.authenticate('jwt', {session: false}), asy
         await Promise.all(group.members.map(async (memberId) => {
             let user = await User.findById({_id: memberId});
 
-            if (user._id.toString() == userId) {
-                loggedInUserDetails.isGroupMember = true;
-            }
-
             let member = {
                 id: memberId,
-                username: user.username
+                username: 'Deleted user'
+            }
+
+            if (user) {
+                if (user._id.toString() == userId) {
+                    loggedInUserDetails.isGroupMember = true;
+                }
+                member.username = user.username;
             }
             membersWithUsernames.push(member);
         }));
@@ -117,10 +128,13 @@ groupRouter.get('/:groupId', passport.authenticate('jwt', {session: false}), asy
 
             let mappedPost = {
                 id: post._id,
-                createdBy: user.username,
+                createdBy: "Deleted user",
                 dateTimeCreated: post.dateTimeCreated,
                 text: post.text,
                 likes: post.likes
+            }
+            if (user) {
+                mappedPost.createdBy = user.username;
             }
             posts.push(mappedPost);
         }));

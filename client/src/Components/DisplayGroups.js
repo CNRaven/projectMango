@@ -2,8 +2,9 @@ import React, { useState, useContext, useEffect} from 'react';
 import GroupsService from '../Services/GroupsService';
 import CreateGroup from './CreateGroup';
 import { Link } from 'react-router-dom';
+import './DisplayGroups.css'
 
-const Groups = () => {
+const DisplayGroups = () => {
     const [groups, setGroups] = useState([]);
 
     useEffect(() => {
@@ -14,31 +15,22 @@ const Groups = () => {
 
     const groupsElements = groups.map(group => {
         return (
-            <div key={group.id}>
+            <div className='groupElement' key={group.id}>
                 <Link 
                     to={{
                         pathname:'/group',
                         state: { groupId: group.id }
                             }}>{group.name}</Link>
-                <p>{group.description}</p>
             </div>
         );
     });
 
-    const addCreatedGroupToState = (createdGroup) => {
-        let currentGroups = [...groups];
-        currentGroups.push(createdGroup);
-        setGroups(currentGroups);
-    }
-
     return (
 
         <div>
-            <CreateGroup groupCreated={createdGroup => addCreatedGroupToState(createdGroup)}/>
-            <h1>All existing groups</h1>
-            {groupsElements}
+            <h3>{groupsElements}</h3>
         </div>
     )
 }
 
-export default Groups;
+export default DisplayGroups;

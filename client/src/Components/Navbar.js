@@ -41,7 +41,7 @@ const Navbar = props =>{
     const authenticatedNavBar = ()=>{
         return(
             <>
-                <Link to="/">
+                <Link to="/home">
                     <li className="nav-item nav-link">
                         HOME
                     </li>
@@ -63,24 +63,19 @@ const Navbar = props =>{
                 </Link>
                 <Link to="/groups">
                     <li className="nav-item nav-link">
-                        Groups
+                        GROUPS
                     </li>
                 </Link>
                 <Link to="/workoutnew">
                     <li className="nav-item nav-link">
-                        Workout New
+                        NEW WORKOUT
                     </li>
                 </Link>          
                 <Link to="/workoutedit">
                     <li className="nav-item nav-link">
-                        Workout Edit
+                       EDIT WORKOUT 
                     </li>
                 </Link>
-                <Link to="/activityfeed">
-                    <li className="nav-item nav-link">
-                        activityfeed
-                    </li>
-                </Link>  
             
 
                 {/* <Link to="/getusers">
@@ -96,6 +91,7 @@ const Navbar = props =>{
                         </li>
                     </Link> : null
                 }  
+                
                 <button type="button" className="logout-btn" onClick={onClickLogoutHandler}>
                     LOGOUT
                 </button>

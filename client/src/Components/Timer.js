@@ -117,7 +117,6 @@ const Timer = () => {
                     <h1>{workouts[workoutSelected].name}</h1>
                     {/* <h4>{workouts[workoutSelected].description}</h4> */}
                     <div className='selectTimer'>
-                            <h2>Length of workout:</h2>
                             <select onChange={timeInputHandler} name="cars" id="cars">
                                 <option value="900">15 Minutes</option>
                                 <option value="1800">30 Minutes</option>
@@ -125,7 +124,7 @@ const Timer = () => {
                             </select>    
                             <button onClick={()=>toggleTimer()}> {startTimer == false ? "Start" : "Pause"}</button>
                             <br />
-                            {counter === 0 ? "complete" : "Keep going"}
+                            
                         </div>
                         </div>
                     <div className='clock'>
@@ -135,8 +134,12 @@ const Timer = () => {
 
                     <div className='infoTimer'>
                         <div className='currentEx'>
+
                             <h1>Current Exercise : {combined[workoutIterator]}</h1>
                             <h3>NEXT : {combined[workoutIterator+1]}</h3>
+                        <h2>{counter === 0 ? "Complete" : "Keep going"}</h2>
+                            
+
                             </div>
 
                         

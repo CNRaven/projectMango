@@ -39,7 +39,9 @@ const Register = props=>{
 
 
     return(
-        <div>
+        <React.Fragment>
+        <div className='middle'>
+            <div className='box'>
             <form className='register' onSubmit={onSubmit}>
                 <h1>SIGN UP</h1>
                 <label htmlFor="username" className="sr-only">Username: </label>
@@ -68,8 +70,10 @@ const Register = props=>{
                         <div className='error'>{message ? <Message message={message}/> : null}</div>
                         
             </form>
-            
+            </div>
         </div>
+
+        </React.Fragment>
     )
 }
 

@@ -49,7 +49,9 @@ const Todos = props =>{
 
     return(
         <React.Fragment>
-        <div className='left'><div className='box'><h2>Test</h2></div></div>
+
+        <div className='left'><div className='quote'><h3>“Never give up, never give in, and when the upper hand is ours, may we have the ability to handle the win with the dignity that we absorbed the loss.”</h3></div></div>
+        
        
         <div className='middle'><div className='box'><h2>Achievements</h2>            
             <ul className="list-group">
@@ -74,7 +76,7 @@ const Todos = props =>{
             </div>
              
         </div>
-        <div className='right'><div className='box'><h2>Test</h2></div></div>
+        <div className='right'><img src='trophy.svg' className='workoutImg'></img></div>
         
         </React.Fragment>
     );
